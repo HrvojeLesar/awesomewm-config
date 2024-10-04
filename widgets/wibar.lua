@@ -12,20 +12,26 @@ local mysystray = require("widgets.systray")
 local mybattery = require("widgets.battery")
 local mynetwork = require("widgets.network")
 local mymemory = require("widgets.memory")
-local mycpu = require("widgets.cpu")
+-- local mycpu = require("widgets.cpu")
 local mytextclock = require("widgets.textclock")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+-- local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 
 local mylogoutmenu = logout_menu_widget()
+-- local mybatterywidget = batteryarc_widget()
+
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 
 -- Activated widgets
 local right_widgets = {
     mysystray,
+    spotify_widget(),
     mymemory,
-    mycpu,
-    mybattery,
+    cpu_widget({color = "#ffffff"}),
     mynetwork,
     mytextclock,
+    -- mybatterywidget,
     mylogoutmenu,
 }
 
