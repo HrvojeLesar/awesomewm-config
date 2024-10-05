@@ -47,6 +47,13 @@ for i = 1, 5 do
     )
 end
 
+local image_commands = {
+    exarch = "feh --bg-max /home/hrvoje/.config/awesome/wallpapers/exarch.webp",
+    i = "feh --bg-max /home/hrvoje/.config/awesome/wallpapers/W.jpeg",
+}
+
+local current_image = "exarch"
+
 -- {{{ Key bindings
 M.globalkeys = gears.table.join(
     move_client_keybinds,
@@ -141,7 +148,18 @@ M.globalkeys = gears.table.join(
     awful.key({ modkey }, "w", function() awful.spawn("rofi -show window -show-icons") end,
         { description = "Spawn rofi", group = "Run" }),
     awful.key({}, "Print", function() awful.spawn("flameshot gui") end,
-        { description = "Print screen", group = "Run" })
+        { description = "Print screen", group = "Run" }),
+
+    -- Background
+    awful.key({ modkey, "Control" }, "n", function()
+            if current_image == "exarch" then
+                current_image = "i"
+            else
+                current_image = "exarch"
+            end
+            awful.spawn(image_commands[current_image])
+        end,
+        { description = "Next image", group = "Background" })
 )
 
 M.clientkeys = gears.table.join(
