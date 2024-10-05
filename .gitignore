@@ -1,2 +1,4 @@
 client_colors.json
-W.jpeg
+*.jpeg
+*.jpg
+*.webp

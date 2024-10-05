@@ -18,6 +18,8 @@ local wibar = require("widgets.wibar")
 local json = require("util.json")
 local keys = require("keys")
 
+local wallpapers = require("wallpapers.wallpapers")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -105,24 +107,14 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
-local function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-        -- gears.wallpaper.set("#131313")
-    end
-end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
+screen.connect_signal("property::geometry", function (s)
+    wallpapers:set_wallpaper(nil, s)
+end)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
-    set_wallpaper(s)
+    wallpapers:set_wallpaper(nil, s)
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])

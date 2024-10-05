@@ -1,6 +1,7 @@
 local gears = require("gears")
 local awful = require("awful")
 local xrandr = require("xrandr")
+local wallpapers = require("wallpapers.wallpapers")
 
 local M = {}
 
@@ -45,36 +46,6 @@ for i = 1, 5 do
             { description = "view tag", group = "tag" }
         )
     )
-end
-
-local image_commands = {
-    "feh --bg-max /home/hrvoje/.config/awesome/wallpapers/exarch.webp",
-    "feh --bg-max /home/hrvoje/.config/awesome/wallpapers/W.jpeg",
-    "feh --bg-max /home/hrvoje/.config/awesome/wallpapers/ni.jpg",
-    "feh --bg-max /home/hrvoje/.config/awesome/wallpapers/lon.jpg",
-    "feh --bg-max /home/hrvoje/.config/awesome/wallpapers/guc.jpg",
-    "feh --bg-max /home/hrvoje/.config/awesome/wallpapers/orig.jpg",
-    "feh --bg-max /home/hrvoje/.config/awesome/wallpapers/nov.jpeg",
-}
-local image_index = 1
-
---- @param step integer|nil
---- @return string|nil
-local function next_image(step)
-    local step_by = step or 1
-    image_index = image_index + step_by
-    local img = image_commands[image_index]
-    if img == nil then
-        image_index = (function () if step_by > 0 then return 1 else return #image_commands end end)()
-        img = image_commands[image_index]
-    end
-
-    return img
-end
-
-local function home_image()
-    image_index = 1
-    return image_commands[image_index]
 end
 
 -- {{{ Key bindings
@@ -175,18 +146,18 @@ M.globalkeys = gears.table.join(
 
     -- Background
     awful.key({ modkey, "Control" }, "n", function()
-            local command = next_image()
+            local command = wallpapers:next_wallpaper()
             awful.spawn(command)
         end,
         { description = "Next image", group = "Background" }),
     awful.key({ modkey, "Control" }, "p", function()
-            local command = next_image(-1)
+            local command = wallpapers:next_wallpaper(-1)
             awful.spawn(command)
         end,
         { description = "Previous image", group = "Background" }),
 
     awful.key({ modkey, "Control" }, "h", function()
-            awful.spawn(home_image())
+            awful.spawn(wallpapers:home_image())
         end,
         { description = "First image", group = "Background" })
 )
