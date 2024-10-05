@@ -10,6 +10,11 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 
+-- {{{ Variable definitions
+-- Themes define colours, icons, font and wallpapers.
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
+beautiful.init(theme_path)
+
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -49,10 +54,6 @@ do
 end
 -- }}}
 
--- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
-beautiful.init(theme_path)
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -108,7 +109,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", function (s)
+screen.connect_signal("property::geometry", function(s)
     wallpapers:set_wallpaper(nil, s)
 end)
 
@@ -194,7 +195,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Autostart
-awful.spawn.with_shell("feh --bg-max ~/.config/awesome/wallpapers/exarch.webp")
+wallpapers:set_wallpaper()
+-- awful.spawn.with_shell("feh --bg-max ~/.config/awesome/wallpapers/exarch.webp")
 -- awful.spawn.with_shell("feh --bg-max ~/.config/awesome/wallpapers/W.jpeg")
 awful.spawn.with_shell("xset r rate 225 33")
 awful.spawn.with_shell("numlockx on")

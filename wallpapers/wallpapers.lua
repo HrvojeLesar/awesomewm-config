@@ -5,7 +5,7 @@ local M = {}
 
 M.image_index = {}
 M.wallpapers = {
-    "feh --bg-max /home/hrvoje/.config/awesome/wallpapers/exarch.webp",
+    "/home/hrvoje/.config/awesome/wallpapers/exarch.png",
     "/home/hrvoje/.config/awesome/wallpapers/W.jpeg",
     "/home/hrvoje/.config/awesome/wallpapers/ni.jpg",
     "/home/hrvoje/.config/awesome/wallpapers/lon.jpg",
@@ -14,9 +14,11 @@ M.wallpapers = {
     "/home/hrvoje/.config/awesome/wallpapers/nov.jpeg",
 }
 
+--- @generic T
 --- @param value integer
-function M:set_image_index(value)
-    local screen = mouse.screen
+--- @param screenObj ?T
+function M:set_image_index(value, screenObj)
+    local screen = screenObj or mouse.screen
     self.image_index[tostring(screen)] = value
 end
 
@@ -35,6 +37,9 @@ end
 --- @param screenObj ?T
 function M:set_wallpaper(image, screenObj)
     local screen = screenObj or mouse.screen
+    if image == nil then
+        self:set_image_index(1, screen)
+    end
     local img = image or self.image_index[screen] or self.wallpapers[1]
     if img:sub(1, #"feh") == "feh" then
         for k, _ in pairs(self.image_index) do
@@ -47,8 +52,7 @@ function M:set_wallpaper(image, screenObj)
 end
 
 function M:home_image()
-    local img = self.wallpapers[1]
-    self:set_wallpaper(img)
+    self:set_wallpaper()
 end
 
 --- @param step integer|nil
