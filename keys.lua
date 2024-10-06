@@ -127,6 +127,8 @@ M.globalkeys = gears.table.join(
         { description = "Start discord", group = "client" }),
     awful.key({ modkey, }, "s", function() awful.spawn("spotify") end,
         { description = "Start spotify", group = "client" }),
+    awful.key({ modkey, "Shift" }, "b", function() awful.spawn("x-www-browser --incognito") end,
+        { description = "Open browser", group = "client" }),
 
     -- Media keys
     awful.key({}, "XF86AudioPlay", function() awful.spawn("playerctl play-pause") end,
