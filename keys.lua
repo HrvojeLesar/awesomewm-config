@@ -135,6 +135,8 @@ M.globalkeys = gears.table.join(
         { description = "Next", group = "media" }),
     awful.key({}, "XF86AudioPrev", function() awful.spawn("playerctl previous") end,
         { description = "Prev", group = "media" }),
+    awful.key({}, "XF86AudioMute", function() awful.spawn("amixer sset Master 1+ toggle") end,
+        { description = "Prev", group = "media" }),
 
     -- Run
     awful.key({ modkey }, "a", function() awful.spawn("rofi -show drun -show-icons") end,
