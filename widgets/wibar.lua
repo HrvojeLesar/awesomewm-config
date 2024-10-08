@@ -23,6 +23,17 @@ local mylogoutmenu = logout_menu_widget()
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 
+local function layoutbox(s)
+    local mylayoutbox = awful.widget.layoutbox(s)
+    mylayoutbox:buttons(awful.util.table.join(
+        awful.button({}, 1, function() awful.layout.inc(1) end),
+        awful.button({}, 3, function() awful.layout.inc(-1) end)))
+
+    return mylayoutbox
+end
+
+local layoutbox_widget = "layoutbox"
+
 -- Activated widgets
 local right_widgets = {
     mysystray,
@@ -30,6 +41,7 @@ local right_widgets = {
     mymemory,
     cpu_widget({color = "#ffffff"}),
     mynetwork,
+    -- layoutbox_widget,
     mytextclock,
     -- mybatterywidget,
     mylogoutmenu,
@@ -57,6 +69,9 @@ function wibar.get(s)
     }
 
     for _, v in ipairs(right_widgets) do
+        if v == "layoutbox" then
+            v = layoutbox(s)
+        end
         right[#right + 1] = ({
             v,
             left = widget_padding,

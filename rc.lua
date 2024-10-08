@@ -66,10 +66,6 @@ awful.layout.layouts = {
     awful.layout.suit.tile.left,
 }
 
-function notify(title, description)
-    awful.spawn("notify-send \"" .. title .. "\" \"" .. description .. "\"")
-end
-
 naughty.notify({
     preset = naughty.config.presets.critical,
     title = "Startup success",
@@ -79,7 +75,7 @@ naughty.notify({
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
+local myawesomemenu = {
     { "hotkeys",     function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
     { "manual",      terminal .. " -e man awesome" },
     { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -87,13 +83,13 @@ myawesomemenu = {
     { "quit",        function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({
+local mymainmenu = awful.menu({
     items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
         { "open terminal", terminal }
     }
 })
 
-mylauncher = awful.widget.launcher({
+local mylauncher = awful.widget.launcher({
     image = beautiful.awesome_icon,
     menu = mymainmenu
 })
@@ -106,7 +102,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
