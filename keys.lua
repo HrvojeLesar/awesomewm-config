@@ -116,6 +116,17 @@ M.globalkeys = gears.table.join(
     -- awful.key({ modkey, }, "Tab", function() awful.client.history.previous() end,
     --     { description = "Prev tab", group = "tab" }),
 
+    awful.key({ modkey, "Shift" }, "t", function()
+            local screen = mouse.screen
+            local bar = mytopbar[screen]
+            if bar == nil then
+                return
+            end
+
+            bar.visible = not bar.visible
+        end,
+        { description = "Toggle topbar", group = "topbar" }),
+
     -- Open programs
     awful.key({ modkey, }, "t", function() awful.spawn(terminal) end,
         { description = "Open terminal", group = "client" }),

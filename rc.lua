@@ -104,6 +104,7 @@ screen.connect_signal("property::geometry", function(s)
     wallpapers:set_wallpaper(nil, s)
 end)
 
+mytopbar = {}
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     wallpapers:set_wallpaper(nil, s)
@@ -111,7 +112,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
 
-    wibar.get(s)
+    mytopbar[s] = wibar.get(s)
 end)
 
 -- {{{ Mouse bindings
