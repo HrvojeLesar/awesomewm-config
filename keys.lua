@@ -2,6 +2,7 @@ local gears = require("gears")
 local awful = require("awful")
 local xrandr = require("xrandr")
 local wallpapers = require("wallpapers.wallpapers")
+local naughty = require("naughty")
 
 local M = {}
 
@@ -65,6 +66,7 @@ M.globalkeys = gears.table.join(
             local c = awful.client.restore()
             -- Focus restored client
             if c then
+                c.ontop = c.floating
                 c:emit_signal(
                     "request::activate", "key.unminimize", { raise = true }
                 )
@@ -107,7 +109,7 @@ M.globalkeys = gears.table.join(
         { description = "Prev tab", group = "tab" }),
 
     -- Xrandr
-    awful.key({ modkey, "Shift" }, "p", function() xrandr.xrandr() end,
+    awful.key({ modkey, "Shift", "Control" }, "p", function() xrandr.xrandr() end,
         { description = "Prev tab", group = "tab" }),
 
     -- Alt tab
@@ -179,6 +181,9 @@ M.clientkeys = gears.table.join(
     awful.key({ modkey, }, "f",
         function(c)
             c.fullscreen = not c.fullscreen
+            if c.fullscreen == false then
+                c.ontop = c.floating
+            end
             c:raise()
         end,
         { description = "toggle fullscreen", group = "client" }),

@@ -66,11 +66,6 @@ awful.layout.layouts = {
     awful.layout.suit.tile.left,
 }
 
-naughty.notify({
-    preset = naughty.config.presets.critical,
-    title = "Startup success",
-    text = "test text"
-})
 -- }}}
 
 -- {{{ Menu
@@ -83,7 +78,7 @@ local myawesomemenu = {
     { "quit",        function() awesome.quit() end },
 }
 
-local mymainmenu = awful.menu({
+mymainmenu = awful.menu({
     items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
         { "open terminal", terminal }
     }

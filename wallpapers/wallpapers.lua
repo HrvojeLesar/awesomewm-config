@@ -6,11 +6,11 @@ local M = {}
 M.image_index = {}
 M.wallpapers = {
     "/home/hrvoje/.config/awesome/wallpapers/exarch.png",
-    "/home/hrvoje/.config/awesome/wallpapers/W.jpeg",
-    "/home/hrvoje/.config/awesome/wallpapers/ni.jpg",
-    "/home/hrvoje/.config/awesome/wallpapers/lon.jpg",
-    "/home/hrvoje/.config/awesome/wallpapers/guc.jpg",
-    "/home/hrvoje/.config/awesome/wallpapers/orig.jpg",
+    "/home/hrvoje/.config/awesome/wallpapers/W_m.jpeg",
+    "/home/hrvoje/.config/awesome/wallpapers/ni_m.jpg",
+    "/home/hrvoje/.config/awesome/wallpapers/lon_m.jpg",
+    "/home/hrvoje/.config/awesome/wallpapers/guc_m.jpg",
+    "/home/hrvoje/.config/awesome/wallpapers/orig_m.jpg",
     "/home/hrvoje/.config/awesome/wallpapers/nov.jpeg",
 }
 
