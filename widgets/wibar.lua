@@ -1,5 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
@@ -34,13 +35,21 @@ end
 
 local layoutbox_widget = "layoutbox"
 
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+local myvolumewidget = volume_widget(
+    {
+        widget_type = "arc",
+        mute_color = beautiful.bg_urgent,
+    })
+
 -- Activated widgets
 local right_widgets = {
     mysystray,
     spotify_widget(),
     mymemory,
-    cpu_widget({color = "#ffffff"}),
+    cpu_widget({ color = "#ffffff" }),
     mynetwork,
+    myvolumewidget,
     -- layoutbox_widget,
     mytextclock,
     -- mybatterywidget,
@@ -58,7 +67,6 @@ function wibar.get(s)
 
     local taglist = mytaglist.get(s)
 
-    -- TODO modular left widgets
     local left = {
         layout = wibox.layout.fixed.horizontal,
         taglist
