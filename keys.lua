@@ -110,7 +110,7 @@ M.globalkeys = gears.table.join(
 
     -- Xrandr
     awful.key({ modkey, "Shift", "Control" }, "p", function() xrandr.xrandr() end,
-        { description = "Prev tab", group = "tab" }),
+        { description = "Next screen positions setup", group = "xrandr" }),
 
     -- Alt tab
     -- awful.key({ modkey, }, "Tab", function() awful.client.history.previous() end,
@@ -181,6 +181,13 @@ M.globalkeys = gears.table.join(
 
 M.clientkeys = gears.table.join(
     awful.key({ modkey, }, "m",
+        function(c)
+            -- The client currently has the input focus, so it cannot be
+            -- minimized, since minimized clients can't have the focus.
+            c.minimized = true
+        end,
+        { description = "minimize", group = "client" }),
+    awful.key({ modkey, }, "x",
         function(c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
