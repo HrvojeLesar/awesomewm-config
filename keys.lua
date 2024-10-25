@@ -113,8 +113,14 @@ M.globalkeys = gears.table.join(
         { description = "Next screen positions setup", group = "xrandr" }),
 
     -- Alt tab
-    -- awful.key({ modkey, }, "Tab", function() awful.client.history.previous() end,
-    --     { description = "Prev tab", group = "tab" }),
+    awful.key({ modkey, }, "Tab", function()
+            awesome.emit_signal("bling::window_switcher::turn_on")
+        end,
+        { description = "Window switcher", group = "bling" }),
+    awful.key({ "Mod1", }, "Tab", function()
+            awesome.emit_signal("bling::window_switcher::turn_on")
+        end,
+        { description = "Window switcher", group = "bling" }),
 
     awful.key({ modkey, "Shift" }, "t", function()
             local screen = mouse.screen
