@@ -1,0 +1,25 @@
+#!/usr/bin/bash
+
+if [ "${DESKTOP_SESSION}" = "awesome" ]; then
+    # turn off Display Power Management Service (DPMS)
+    xset -dpms
+    # setterm -term xterm -blank 0 -powerdown 0
+
+    # turn off black Screensaver
+    xset s off
+
+    xrandr \
+        --output HDMI-0 --mode 1920x1080 --pos 0x180 --rotate normal \
+        --output DP-0 --primary --mode 2560x1440 --pos 1920x0 --rotate normal \
+        --output DP-1 --off \
+        --output DP-2 --off \
+        --output DP-3 --off \
+        --output DP-4 --off \
+        --output DP-5 --off \
+        --output HDMI-A-2-0 --off \
+        --output DisplayPort-2-0 --off \
+        --output DisplayPort-2-1 --off \
+        --output DisplayPort-2-2 --off
+
+    export $(gnome-keyring-daemon -s)
+fi
