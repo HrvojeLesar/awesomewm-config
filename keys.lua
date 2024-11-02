@@ -6,6 +6,17 @@ local naughty = require("naughty")
 
 local M = {}
 
+local function change_opacity(client, step)
+    local opacity_to_set = client.opacity + step
+    if opacity_to_set >= 1.0 then
+        opacity_to_set = 1.0
+    elseif opacity_to_set <= 0.0 then
+        opacity_to_set = 0.0
+    end
+
+    client.opacity = opacity_to_set
+end
+
 -- Default modkey.
 modkey = "Mod4"
 
@@ -217,8 +228,27 @@ M.clientkeys = gears.table.join(
             c.floating = not c.floating
             c.ontop = c.floating
         end,
-        { description = "toggle floating", group = "client" })
+        { description = "toggle floating", group = "client" }),
 
+    -- Opacity
+    awful.key({ modkey, }, ",", function(c)
+            change_opacity(c, 0.05)
+        end,
+        { description = "Opacity up", group = "client" }),
+
+    awful.key({ modkey, }, ".", function(c)
+            change_opacity(c, -0.05)
+        end,
+        { description = "Opacity down", group = "client" }),
+
+    awful.key({ modkey, }, "-", function(c)
+            if c.opacity == 1.0 then
+                c.opacity = 0.65
+            elseif c.opacity ~= 1.0 then
+                c.opacity = 1.0
+            end
+        end,
+        { description = "Opacity toggle", group = "client" })
 )
 
 M.clientbuttons = gears.table.join(
