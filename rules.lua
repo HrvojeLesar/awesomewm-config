@@ -27,6 +27,10 @@ M = {
         rule = { instance = "spotify" },
         properties = { tag = "2" }
     },
+    {
+        rule = { instance = "steam" },
+        properties = { tag = "3" }
+    },
 
     -- Floating clients.
     -- {

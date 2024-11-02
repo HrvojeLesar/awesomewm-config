@@ -199,7 +199,9 @@ end)
 
 client.connect_signal("focus", function(c)
     c.border_color = beautiful.border_focus
-    c.ontop = c.floating
+    if not c.fullscreen then
+        c.ontop = c.floating
+    end
     c:raise()
 end)
 

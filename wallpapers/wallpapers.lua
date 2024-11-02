@@ -11,6 +11,7 @@ M.wallpapers = {
     "/home/hrvoje/.config/awesome/wallpapers/lon_m.jpg",
     "/home/hrvoje/.config/awesome/wallpapers/guc_m.jpg",
     "/home/hrvoje/.config/awesome/wallpapers/orig_m.jpg",
+    "/home/hrvoje/.config/awesome/wallpapers/83124170_874301766363558_1776044198005949229_n.jpg",
     "/home/hrvoje/.config/awesome/wallpapers/nov.jpeg",
 }
 
