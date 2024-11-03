@@ -17,10 +17,10 @@ local mymemory = require("widgets.memory")
 local mytextclock = require("widgets.textclock")
 local myplayerctdl = require("widgets.playerctld")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
--- local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 
 local mylogoutmenu = logout_menu_widget()
--- local mybatterywidget = batteryarc_widget()
+local mybatterywidget = batteryarc_widget()
 
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
@@ -60,7 +60,7 @@ local right_widgets = {
     myvolumewidget,
     -- layoutbox_widget,
     mytextclock,
-    -- mybatterywidget,
+    mybatterywidget,
     mylogoutmenu,
 }
 
