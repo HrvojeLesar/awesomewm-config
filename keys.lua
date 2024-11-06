@@ -199,11 +199,17 @@ M.globalkeys = gears.table.join(
 M.clientkeys = gears.table.join(
     awful.key({ modkey, }, "m",
         function(c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
+            if c.maximized or c.maximized_horizontal or c.maximized_vertical then
+                c.maximized = false
+                c.maximized_horizontal = false
+                c.maximized_vertical = false
+            else
+                c.maximized = true
+                c.maximized_horizontal = true
+                c.maximized_vertical = true
+            end
         end,
-        { description = "minimize", group = "client" }),
+        { description = "toggle maximization", group = "client" }),
     awful.key({ modkey, }, "x",
         function(c)
             -- The client currently has the input focus, so it cannot be

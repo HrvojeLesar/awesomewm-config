@@ -223,3 +223,9 @@ gears.timer {
     autostart = true,
     callback = function() collectgarbage() end
 }
+
+client.connect_signal("property::minimized", function(c)
+    if string.find(c.instance, "War Thunder") then
+        c.minimized = false
+    end
+end)
