@@ -254,7 +254,12 @@ M.clientkeys = gears.table.join(
                 c.opacity = 1.0
             end
         end,
-        { description = "Opacity toggle", group = "client" })
+        { description = "Opacity toggle", group = "client" }),
+
+    awful.key({ modkey, }, "o", function(c)
+        c.sticky = not c.sticky
+        end,
+        { description = "Sticky toggle", group = "client" })
 )
 
 M.clientbuttons = gears.table.join(

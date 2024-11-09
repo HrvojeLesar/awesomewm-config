@@ -160,8 +160,7 @@ client.connect_signal("manage", function(c)
     end
 end)
 
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
+local function update_titlebars(c)
     local file = io.open(string.format("%s/.config/awesome/client_colors.json", os.getenv("HOME")), "rb")
     local client_color = {}
 
@@ -169,6 +168,20 @@ client.connect_signal("request::titlebars", function(c)
         client_color = json.decode(file:read("*all"))[c.class] or
             { focus = "#3c3c3c", normal = "#303030", focus_top = "#3c3c3c", normal_top = "#303030" }
         file:close()
+    end
+
+    if c.floating then
+        client_color["focus_top"] = "#01949a"
+        client_color["normal_top"] = "#004369"
+        client_color["focus"] = "#01949a"
+        client_color["normal"] = "#004369"
+    end
+
+    if c.sticky then
+        client_color["focus_top"] = "#db1f48"
+        client_color["normal_top"] = "#e5ddc8"
+        client_color["focus"] = "#db1f48"
+        client_color["normal"] = "#e5ddc8"
     end
 
     awful.titlebar(c, {
@@ -190,7 +203,21 @@ client.connect_signal("request::titlebars", function(c)
             layout = wibox.layout.align.horizontal
         })
     end
+end
+
+-- Add a titlebar if titlebars_enabled is set to true in the rules.
+client.connect_signal("request::titlebars", function(c)
+    update_titlebars(c)
 end)
+
+client.connect_signal("property::sticky", function(c)
+    update_titlebars(c)
+end)
+
+client.connect_signal("property::floating", function(c)
+    update_titlebars(c)
+end)
+
 
 -- -- Enable sloppy focus, so that focus follows mouse.
 -- client.connect_signal("mouse::enter", function(c)
@@ -225,6 +252,9 @@ gears.timer {
 }
 
 client.connect_signal("property::minimized", function(c)
+    if c.instance == nil then
+        return
+    end
     if string.find(c.instance, "War Thunder") then
         c.minimized = false
     end
