@@ -177,6 +177,13 @@ local function update_titlebars(c)
         client_color["normal"] = "#004369"
     end
 
+    if c.maximized then
+        client_color["focus_top"] = "#f7bec0"
+        client_color["normal_top"] = "#e9eae0"
+        client_color["focus"] = "#f7bec0"
+        client_color["normal"] = "#e9eae0"
+    end
+
     if c.sticky then
         client_color["focus_top"] = "#db1f48"
         client_color["normal_top"] = "#e5ddc8"
