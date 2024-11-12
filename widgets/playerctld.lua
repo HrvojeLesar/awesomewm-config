@@ -16,7 +16,12 @@ local function update_widget_text(widget, stdout, _, _, _)
         widget.markup = ""
         widget:set_visible(false)
     else
-        widget.markup = string.sub(stdout, 1, end_of_line_idx)
+        local markup = string.sub(stdout, 1, end_of_line_idx)
+        local dot_idx = string.find(markup, ".", 1, true)
+        if dot_idx  then
+            markup = string.sub(stdout, 1, dot_idx - 1)
+        end
+        widget.markup = markup
         widget:set_visible(true)
     end
 end
