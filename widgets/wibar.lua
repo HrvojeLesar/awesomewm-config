@@ -15,6 +15,7 @@ local mynetwork = require("widgets.network")
 local mymemory = require("widgets.memory")
 -- local mycpu = require("widgets.cpu")
 local mytextclock = require("widgets.textclock")
+local myplayerctdl = require("widgets.playerctld")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 -- local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 
@@ -45,6 +46,7 @@ local myvolumewidget = volume_widget(
 -- Activated widgets
 local right_widgets = {
     mysystray,
+    myplayerctdl,
     spotify_widget(),
     mymemory,
     cpu_widget({ color = "#ffffff" }),
