@@ -250,6 +250,7 @@ awful.spawn.with_shell("xset r rate 225 33")
 awful.spawn.with_shell("numlockx on")
 awful.spawn.with_shell("diodon")
 awful.spawn.with_shell("picom")
+awful.spawn.with_shell("xss-lock -l i3lock-fancy")
 -- awful.spawn.with_shell("sxhkd")
 
 gears.timer {
