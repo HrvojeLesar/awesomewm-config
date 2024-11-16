@@ -31,6 +31,19 @@ M = {
         rule = { instance = "steam" },
         properties = { tag = "3" }
     },
+    {
+        rule_any = {
+            name = {
+                "Friends List",
+                "Special Offers",
+            }
+        },
+        properties = {
+            tag = "3",
+            ontop = true,
+            floating = true,
+        }
+    },
 
     -- Floating clients.
     -- {
