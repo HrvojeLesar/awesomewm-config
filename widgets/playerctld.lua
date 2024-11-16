@@ -40,5 +40,6 @@ playerctld_widget:connect_signal("button::press", function(_, _, _, button)
 end)
 
 watch(LIST_PLAYERS, 1, update_widget_text, playerctld_widget)
+awful.spawn.easy_async("playerctl --player playerctld status", function(_, _, _, _) end)
 
 return playerctld_widget

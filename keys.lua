@@ -161,11 +161,11 @@ M.globalkeys = gears.table.join(
         { description = "Open browser", group = "client" }),
 
     -- Media keys
-    awful.key({}, "XF86AudioPlay", function() awful.spawn("playerctl play-pause") end,
+    awful.key({}, "XF86AudioPlay", function() awful.spawn("playerctl --player playerctld play-pause") end,
         { description = "Play/Pause", group = "media" }),
-    awful.key({}, "XF86AudioNext", function() awful.spawn("playerctl next") end,
+    awful.key({}, "XF86AudioNext", function() awful.spawn("playerctl --player playerctld next") end,
         { description = "Next", group = "media" }),
-    awful.key({}, "XF86AudioPrev", function() awful.spawn("playerctl previous") end,
+    awful.key({}, "XF86AudioPrev", function() awful.spawn("playerctl --player playerctld previous") end,
         { description = "Prev", group = "media" }),
     awful.key({}, "XF86AudioMute", function() awful.spawn("amixer sset Master 1+ toggle") end,
         { description = "Prev", group = "media" }),
