@@ -32,7 +32,7 @@ for i = 1, 5 do
                     tag:view_only()
                 end
             end,
-            { description = "view tag", group = "tag" }
+            { description = "View tag", group = "tag" }
         ),
         awful.key({ modkey, "Shift" }, i,
             function()
@@ -44,7 +44,7 @@ for i = 1, 5 do
                     end
                 end
             end,
-            { description = "view tag", group = "tag" }
+            { description = "Move client and focus tag", group = "tag" }
         ),
         awful.key({ modkey, "Control" }, i,
             function()
@@ -55,7 +55,7 @@ for i = 1, 5 do
                     end
                 end
             end,
-            { description = "view tag", group = "tag" }
+            { description = "Send client to tag", group = "tag" }
         )
     )
 end
@@ -122,6 +122,9 @@ M.globalkeys = gears.table.join(
     -- Xrandr
     awful.key({ modkey, "Shift", "Control" }, "p", function() xrandr.xrandr() end,
         { description = "Next screen positions setup", group = "xrandr" }),
+
+    awful.key({ modkey, "Shift", "Control", "Mod1" }, "i", function() awful.spawn("/home/hrvoje/run_i.sh") end,
+        { description = "Next screen positions setup script", group = "xrandr" }),
 
     -- Alt tab
     awful.key({ modkey, }, "Tab", function()
