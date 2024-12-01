@@ -180,6 +180,9 @@ M.globalkeys = gears.table.join(
     awful.key({}, "Print", function() awful.spawn("flameshot gui") end,
         { description = "Print screen", group = "run" }),
 
+    awful.key({ modkey }, "g", function() awful.spawn("boomer") end,
+        { description = "Boomer", group = "run" }),
+
     -- Background
     awful.key({ modkey, "Control" }, "n", function()
             local command = wallpapers:next_wallpaper()
