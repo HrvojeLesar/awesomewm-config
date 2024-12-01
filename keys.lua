@@ -179,7 +179,6 @@ M.globalkeys = gears.table.join(
         { description = "Spawn rofi", group = "run" }),
     awful.key({}, "Print", function() awful.spawn("flameshot gui") end,
         { description = "Print screen", group = "run" }),
-
     awful.key({ modkey }, "g", function() awful.spawn("boomer") end,
         { description = "Boomer", group = "run" }),
 
@@ -264,7 +263,25 @@ M.clientkeys = gears.table.join(
     awful.key({ modkey, }, "o", function(c)
             c.sticky = not c.sticky
         end,
-        { description = "Sticky toggle", group = "client" })
+        { description = "Sticky toggle", group = "client" }),
+
+    awful.key({ modkey, }, "z",
+        function(c)
+            local current_tag = c.first_tag or nil
+            if current_tag == nil then
+                return
+            end
+            local clients = current_tag:clients()
+            for _, client in ipairs(clients) do
+                if client ~= c then
+                    client.minimized = true
+                end
+            end
+            -- Workaround for not updating topbar
+            c.minimized = true
+            c.minimized = false
+        end,
+        { description = "Zoom client", group = "client" })
 )
 
 M.clientbuttons = gears.table.join(
