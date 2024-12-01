@@ -32,7 +32,7 @@ for i = 1, 5 do
                     tag:view_only()
                 end
             end,
-            { description = "View tag", group = "tag" }
+            { description = "Focus tag", group = "tag" }
         ),
         awful.key({ modkey, "Shift" }, i,
             function()
@@ -83,29 +83,29 @@ M.globalkeys = gears.table.join(
                 )
             end
         end,
-        { description = "restore minimized", group = "client" }),
+        { description = "Restore minimized client", group = "client" }),
 
     -- Reload config
     awful.key({ modkey, "Control" }, "r", awesome.restart,
-        { description = "reload awesome", group = "awesome" }),
+        { description = "Reload awesome", group = "awesome" }),
 
     -- Moving between windows
     awful.key({ modkey, }, "j", function() awful.client.focus.byidx(1) end,
-        { description = "focus next by index", group = "client" }),
+        { description = "Focus next client by index", group = "client" }),
     awful.key({ modkey, }, "k", function() awful.client.focus.byidx(-1) end,
-        { description = "focus previous by index", group = "client" }),
+        { description = "Focus previous client by index", group = "client" }),
 
     -- Window resize
     awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
-        { description = "increase master width factor", group = "layout" }),
+        { description = "Increase master client width factor", group = "layout" }),
     awful.key({ modkey, }, "h", function() awful.tag.incmwfact(-0.05) end,
-        { description = "decrease master width factor", group = "layout" }),
+        { description = "Decrease master client width factor", group = "layout" }),
 
     -- Swap window
     awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
-        { description = "swap with next client by index", group = "client" }),
+        { description = "Swap with next client", group = "client" }),
     awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
-        { description = "swap with previous client by index", group = "client" }),
+        { description = "Swap with previous client", group = "client" }),
 
     -- Layouts
     awful.key({ modkey, "Shift" }, "n", function() awful.layout.inc(1) end,
@@ -122,7 +122,6 @@ M.globalkeys = gears.table.join(
     -- Xrandr
     awful.key({ modkey, "Shift", "Control" }, "p", function() xrandr.xrandr() end,
         { description = "Next screen positions setup", group = "xrandr" }),
-
     awful.key({ modkey, "Shift", "Control", "Mod1" }, "i", function() awful.spawn("/home/hrvoje/run_i.sh") end,
         { description = "Next screen positions setup script", group = "xrandr" }),
 
@@ -175,28 +174,28 @@ M.globalkeys = gears.table.join(
 
     -- Run
     awful.key({ modkey }, "a", function() awful.spawn("rofi -show drun -show-icons") end,
-        { description = "Spawn rofi", group = "Run" }),
+        { description = "Spawn rofi", group = "run" }),
     awful.key({ modkey }, "w", function() awful.spawn("rofi -show window -show-icons") end,
-        { description = "Spawn rofi", group = "Run" }),
+        { description = "Spawn rofi", group = "run" }),
     awful.key({}, "Print", function() awful.spawn("flameshot gui") end,
-        { description = "Print screen", group = "Run" }),
+        { description = "Print screen", group = "run" }),
 
     -- Background
     awful.key({ modkey, "Control" }, "n", function()
             local command = wallpapers:next_wallpaper()
             awful.spawn(command)
         end,
-        { description = "Next image", group = "Background" }),
+        { description = "Next image", group = "background" }),
     awful.key({ modkey, "Control" }, "p", function()
             local command = wallpapers:next_wallpaper(-1)
             awful.spawn(command)
         end,
-        { description = "Previous image", group = "Background" }),
+        { description = "Previous image", group = "background" }),
 
     awful.key({ modkey, "Control" }, "h", function()
             awful.spawn(wallpapers:home_image())
         end,
-        { description = "First image", group = "Background" })
+        { description = "First image", group = "background" })
 )
 
 M.clientkeys = gears.table.join(
@@ -212,14 +211,14 @@ M.clientkeys = gears.table.join(
                 c.maximized_vertical = true
             end
         end,
-        { description = "toggle maximization", group = "client" }),
+        { description = "Toggle maximization", group = "client" }),
     awful.key({ modkey, }, "x",
         function(c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end,
-        { description = "minimize", group = "client" }),
+        { description = "Minimize", group = "client" }),
 
     -- Toggle fullscreen
     awful.key({ modkey, }, "f",
@@ -230,14 +229,14 @@ M.clientkeys = gears.table.join(
             end
             c:raise()
         end,
-        { description = "toggle fullscreen", group = "client" }),
+        { description = "Toggle fullscreen", group = "client" }),
 
     -- Toggle floating on window
     awful.key({ modkey, }, "space", function(c)
             c.floating = not c.floating
             c.ontop = c.floating
         end,
-        { description = "toggle floating", group = "client" }),
+        { description = "Toggle floating", group = "client" }),
 
     -- Opacity
     awful.key({ modkey, }, ",", function(c)
@@ -260,7 +259,7 @@ M.clientkeys = gears.table.join(
         { description = "Opacity toggle", group = "client" }),
 
     awful.key({ modkey, }, "o", function(c)
-        c.sticky = not c.sticky
+            c.sticky = not c.sticky
         end,
         { description = "Sticky toggle", group = "client" })
 )
