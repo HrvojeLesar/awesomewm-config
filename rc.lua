@@ -83,6 +83,10 @@ editor_cmd = terminal .. " -e " .. editor
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
     awful.layout.suit.tile.left,
+    awful.layout.suit.corner.ne,
+    awful.layout.suit.corner.nw,
+    awful.layout.suit.corner.se,
+    awful.layout.suit.corner.sw,
 }
 
 -- }}}
@@ -161,14 +165,7 @@ client.connect_signal("manage", function(c)
 end)
 
 local function update_titlebars(c)
-    local file = io.open(string.format("%s/.config/awesome/client_colors.json", os.getenv("HOME")), "rb")
     local client_color = {}
-
-    if file ~= nil then
-        client_color = json.decode(file:read("*all"))[c.class] or
-            { focus = "#3c3c3c", normal = "#303030", focus_top = "#3c3c3c", normal_top = "#303030" }
-        file:close()
-    end
 
     if c.floating then
         client_color["focus_top"] = "#01949a"
