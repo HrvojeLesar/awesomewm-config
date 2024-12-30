@@ -83,10 +83,6 @@ editor_cmd = terminal .. " -e " .. editor
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
     awful.layout.suit.tile.left,
-    awful.layout.suit.corner.ne,
-    awful.layout.suit.corner.nw,
-    awful.layout.suit.corner.se,
-    awful.layout.suit.corner.sw,
 }
 
 -- }}}
@@ -94,22 +90,16 @@ awful.layout.layouts = {
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 local myawesomemenu = {
-    { "hotkeys",     function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { "manual",      terminal .. " -e man awesome" },
-    { "edit config", editor_cmd .. " " .. awesome.conffile },
-    { "restart",     awesome.restart },
-    { "quit",        function() awesome.quit() end },
+    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+    { "restart", awesome.restart },
+    { "quit",    function() awesome.quit() end },
 }
 
 mymainmenu = awful.menu({
-    items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+    items = {
+        { "awesome",       myawesomemenu, beautiful.awesome_icon },
         { "open terminal", terminal }
     }
-})
-
-local mylauncher = awful.widget.launcher({
-    image = beautiful.awesome_icon,
-    menu = mymainmenu
 })
 
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
