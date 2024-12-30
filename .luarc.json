@@ -7,12 +7,16 @@
             "awesome",
             "awful",
             "client",
+            "mouse",
+            "mousegrabber",
+            "root",
             "screen",
             "tag"
         ]
     },
     "workspace": {
         "library": [
+            "~/.local/share/awesome-emmylua/lua",
             "/usr/share/awesome/lib/"
         ],
         "maxPreload": 2000,
