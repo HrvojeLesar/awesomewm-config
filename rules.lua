@@ -1,8 +1,19 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local keys = require("keys")
+local naughty = require("naughty")
 
 local M = {}
+
+local function discord_screen()
+    for s in screen do
+        if s.index == 2 then
+            return 2
+        end
+    end
+
+    return 1
+end
 
 M = {
     -- All clients will match this rule.
@@ -21,7 +32,10 @@ M = {
     },
     {
         rule = { instance = "discord" },
-        properties = { tag = "3" }
+        properties = {
+            tag = "3",
+            screen = discord_screen()
+        }
     },
     {
         rule = { instance = "spotify" },
